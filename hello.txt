@@ -1,2 +1,244 @@
-Google
-Amazon
+
+SQL*Plus: Release 11.2.0.2.0 Production on Tue Mar 18 03:45:40 2025
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+SQL> connect
+Enter user-name: b1
+Enter password:
+ERROR:
+ORA-01017: invalid username/password; logon denied
+
+
+SQL> connect
+Enter user-name: b1
+Enter password:
+ERROR:
+ORA-01005: null password given; logon denied
+
+
+SQL> connect
+Enter user-name: b1
+Enter password:
+Connected.
+SQL> create table employee(Suyash varchar(100
+  2
+SQL> create table employee
+  2
+SQL> desc employee
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPNO                                     NOT NULL NUMBER(38)
+ ENAME                                              VARCHAR2(10)
+ MGRNO                                              NUMBER(38)
+ SAL                                       NOT NULL FLOAT(126)
+ COMM                                               FLOAT(126)
+
+SQL> Select* from student
+  2  john
+  3  sam
+  4
+SQL> Select* from student
+  2  Select* from student;
+Select* from student
+*
+ERROR at line 2:
+ORA-00933: SQL command not properly ended
+
+
+SQL> Select* from employee;
+
+     EMPNO ENAME           MGRNO        SAL       COMM
+---------- ---------- ---------- ---------- ----------
+       123 abcd             2323      40000        400
+       124 xyz              2324      40000        400
+       125 lmn              2325      40000        400
+
+SQL> Insert into employee values('Sam', 2359, 28572, 575)
+  2  2359
+  3  3574
+  4  534
+  5  345
+  6
+SQL> cls
+SP2-0042: unknown command "cls" - rest of line ignored.
+SQL> cls
+SP2-0042: unknown command "cls" - rest of line ignored.
+SQL> drop table employee
+  2
+SQL> drop table employee;
+
+Table dropped.
+
+SQL> create table employee(id, name varchar(20), age, salary);
+create table employee(id, name varchar(20), age, salary)
+                      *
+ERROR at line 1:
+ORA-02263: need to specify the datatype for this column
+
+
+SQL> create table employee(id,name varchar(20),age,salary);
+create table employee(id,name varchar(20),age,salary)
+                      *
+ERROR at line 1:
+ORA-02263: need to specify the datatype for this column
+
+
+SQL> create table employee(id,name varchar(20),age int,salary int);
+create table employee(id,name varchar(20),age int,salary int)
+                      *
+ERROR at line 1:
+ORA-02263: need to specify the datatype for this column
+
+
+SQL> create table employee(id varchar(10),name varchar(20),age int,salary int);
+
+Table created.
+
+SQL> desc employee
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                                 VARCHAR2(10)
+ NAME                                               VARCHAR2(20)
+ AGE                                                NUMBER(38)
+ SALARY                                             NUMBER(38)
+
+SQL> Insert into employee('ABC', 'Suyash', 21, 1000000);
+Insert into employee('ABC', 'Suyash', 21, 1000000)
+                     *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> Select* from employee
+  2
+SQL> Select* from employee;
+
+no rows selected
+
+SQL> Insert into employee('ABC', 'Suyash', 21, 1000000);
+Insert into employee('ABC', 'Suyash', 21, 1000000)
+                     *
+ERROR at line 1:
+ORA-00928: missing SELECT keyword
+
+
+SQL> Insert into employee values('ABC', 'Suyash', 21,1000000);
+
+1 row created.
+
+SQL> Select* from employee;
+
+ID         NAME                        AGE     SALARY
+---------- -------------------- ---------- ----------
+ABC        Suyash                       21    1000000
+
+SQL> Insert into employee values('CCU', 'JOHN', 22,10000546);
+
+1 row created.
+
+SQL> Insert into employee values('LNU', 'Sam', 20,10050546);
+
+1 row created.
+
+SQL> Select* from employee;
+
+ID         NAME                        AGE     SALARY
+---------- -------------------- ---------- ----------
+ABC        Suyash                       21    1000000
+CCU        JOHN                         22   10000546
+LNU        Sam                          20   10050546
+
+SQL> savepoint p1
+  2
+SQL> savepoint p1;
+
+Savepoint created.
+
+SQL> rollback to savepoint p1;
+
+Rollback complete.
+
+SQL> update employee set name = 'David' where name = 'Sam';
+
+1 row updated.
+
+SQL> Select* from employee;
+
+ID         NAME                        AGE     SALARY
+---------- -------------------- ---------- ----------
+ABC        Suyash                       21    1000000
+CCU        JOHN                         22   10000546
+LNU        David                        20   10050546
+
+SQL> rename employee to employee1
+  2
+SQL> rename employee to employee1;
+rename employee to employee1
+                   *
+ERROR at line 1:
+ORA-00955: name is already used by an existing object
+
+
+SQL> rename employee to employees10;
+
+Table renamed.
+
+SQL> alter table employees10 add SI.NO. int;
+alter table employees10 add SI.NO. int
+                              *
+ERROR at line 1:
+ORA-01748: only simple column names allowed here
+
+
+SQL> alter table employees10 add SINO int;
+
+Table altered.
+
+SQL> Select* from employee;
+Select* from employee
+             *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> Select* from employees10;
+
+ID         NAME                        AGE     SALARY       SINO
+---------- -------------------- ---------- ---------- ----------
+ABC        Suyash                       21    1000000
+CCU        JOHN                         22   10000546
+LNU        David                        20   10050546
+
+SQL> drop table column SINO from employees10;
+drop table column SINO from employees10
+           *
+ERROR at line 1:
+ORA-00903: invalid table name
+
+
+SQL> alter table employees10 drop column SINO;
+
+Table altered.
+
+SQL> Select* from employees10;
+
+ID         NAME                        AGE     SALARY
+---------- -------------------- ---------- ----------
+ABC        Suyash                       21    1000000
+CCU        JOHN                         22   10000546
+LNU        David                        20   10050546
+
+SQL> truncate table employees10
+  2
+SQL> truncate table employees10;
+
+Table truncated.
+
+SQL> Select* from employees10;
+
+no rows selected
+
+SQL> drop table employees10;
+
+Table dropped.
